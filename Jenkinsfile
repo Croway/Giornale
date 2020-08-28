@@ -10,7 +10,7 @@ pipeline {
 	
 		stage("unit-test") {
 			steps {
-				
+				sh 'echo ok'
 				// sh 'mvn test -f giornale-app/pom.xml'
 			}
 		}
