@@ -17,6 +17,7 @@ pipeline {
 		}
 		stage("integration-test") {
 			steps {
+				sh 'echo $USER'
 				sh 'docker ps'
 			}
 		}
