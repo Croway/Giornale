@@ -13,7 +13,7 @@ services:
   giornale-app:
     build: .
     ports:
-      - 8080:8080
+      - 8081:8081
     restart: on-failure
     environment:
       - MYSQL_HOST=giornale-db
