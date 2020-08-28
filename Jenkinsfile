@@ -22,12 +22,14 @@ pipeline {
 				sh 'echo $USER'
 				sh 'newgrp docker'
 				sh 'docker-compose -f giornale-app/docker-compose.yml up --build'
+				sh 'mvn test -f giornale-it/pom.xml'
+				sh "docker-compose -f giornale-app/docker-compose.yml down -v"
 			}
 		}
 		
 		stage("build-prod") {
 			steps {
-				sh 'echo build'
+				sh 'echo build-prod'
 				// sh 'mvn clean install -DskipTests'
 			}
 		}
@@ -35,8 +37,8 @@ pipeline {
 	}
 	
 	post {
-        	always {
-            	sh "docker-compose -f giornale-app/docker-compose.yml down -v"
-        	}
+    	always {
+        	sh "docker-compose -f giornale-app/docker-compose.yml down -v"
     	}
+	}
 }
