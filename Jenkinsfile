@@ -13,7 +13,7 @@ pipeline {
 		stage("unit-test") {
 			steps {
 				sh 'echo ok'
-				sh 'mvn test -s /home/federico/ -f giornale-app/pom.xml'
+				sh 'mvn test -f giornale-app/pom.xml'
 			}
 		}
 	
