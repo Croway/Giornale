@@ -20,7 +20,7 @@ pipeline {
 				sh 'echo $USER'
 				sh 'newgrp docker'
 				sh 'docker-compose -f giornale-app/docker-compose.yml up --build -d'
-				sh 'sleep 60'
+				sh './wait-for-health.sh http://localhost:8081/actuator/health'
 				sh 'mvn clean test-compile failsafe:integration-test failsafe:verify -f giornale-it/pom.xml'
 				sh "docker-compose -f giornale-app/docker-compose.yml down -v"
 			}
