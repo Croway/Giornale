@@ -4,24 +4,24 @@ pipeline {
 	
 	stages {
 	
+		stage("build") {
+			steps {
+				sh 'mvn clean install -DskipTests'
+			}
+		}
+		
 		stage("unit-test") {
 			steps {
 				sh 'echo ok'
-				sh 'mvn test -f giornale-app/pom.xml'
+				sh 'mvn test -s /home/federico/ -f giornale-app/pom.xml'
 			}
 		}
 	
-		stage("build") {
+		stage("integration-test") {
 		
 			steps {
-				sh 'build'
-				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
+				sh 'docker ps'
 				
-				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StopAllServices'], useCustomDockerComposeFile: true])
-				
-				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'ExecuteCommandInsideContainer', command: '--build up', index: 1, privilegedMode: false, service: 'giornale', workDir: 'giornale-app'], useCustomDockerComposeFile: true])
-				// sh 'mvn clean test-compile failsafe:integration-test failsafe:verify -f giornale-it/pom.xml'				
-				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'ExecuteCommandInsideContainer', command: 'down', index: 1, privilegedMode: false, service: 'giornale', workDir: 'giornale-app'], useCustomDockerComposeFile: true])
 			}
 			
 		}
