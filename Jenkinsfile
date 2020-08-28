@@ -21,7 +21,8 @@ pipeline {
 			steps {
 				sh 'echo $USER'
 				sh 'newgrp docker'
-				sh 'docker-compose -f giornale-app/docker-compose.yml up --build'
+				sh 'docker-compose -f giornale-app/docker-compose.yml up --build -d'
+				sh 'sleep 60'
 				sh 'mvn test -f giornale-it/pom.xml'
 				sh "docker-compose -f giornale-app/docker-compose.yml down -v"
 			}
