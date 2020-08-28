@@ -3,29 +3,22 @@ pipeline {
 	agent any
 	
 	stages {
-	
 		stage("build") {
 			steps {
-				sh 'mvn clean install -DskipTests'
+				sh 'echo build'
+				// sh 'mvn clean install -DskipTests'
 			}
 		}
-		
 		stage("unit-test") {
 			steps {
-				sh 'echo ok'
-				sh 'mvn test -f giornale-app/pom.xml'
+				sh 'echo unit'
+				// sh 'mvn test -f giornale-app/pom.xml'
 			}
 		}
-	
 		stage("integration-test") {
-		
 			steps {
 				sh 'docker ps'
-				
 			}
-			
 		}
-		
 	}
-	
 }
