@@ -6,6 +6,7 @@ pipeline {
 	
 		stage("unit-test") {
 			steps {
+				
 				sh 'mvn test -f giornale-app/pom.xml'
 			}
 		}
