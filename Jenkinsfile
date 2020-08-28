@@ -20,7 +20,7 @@ pipeline {
 			steps {
 				step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
 				
-				step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StopAllServices'], useCustomDockerComposeFile: true])
+				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StopAllServices'], useCustomDockerComposeFile: true])
 				
 				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'ExecuteCommandInsideContainer', command: '--build up', index: 1, privilegedMode: false, service: 'giornale', workDir: 'giornale-app'], useCustomDockerComposeFile: true])
 				// sh 'mvn clean test-compile failsafe:integration-test failsafe:verify -f giornale-it/pom.xml'				
