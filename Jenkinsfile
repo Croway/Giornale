@@ -25,6 +25,12 @@ pipeline {
 			}
 		}
 		
+		post {
+        	always {
+            	sh "docker-compose -f giornale-app/docker-compose.yml down -v"
+        	}
+    	}
+		
 		stage("build-prod") {
 			steps {
 				sh 'echo build'
