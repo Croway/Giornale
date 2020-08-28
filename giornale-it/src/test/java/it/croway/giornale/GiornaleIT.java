@@ -13,7 +13,7 @@ class GiornaleIT {
 
 	@Test
 	void baseTest() {
-		ResponseEntity re = restTemplate.getForEntity("http://localhost:8081/notizie", ResponseEntity.class);
+		ResponseEntity<String> re = restTemplate.getForEntity("http://localhost:8081/notizie", String.class);
 		
 		Assertions.assertEquals(200, re.getStatusCodeValue());
 	}
