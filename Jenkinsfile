@@ -3,19 +3,19 @@ pipeline {
 	agent any
 	
 	stages {
-		stage("build-it") {
+		stage("build per test di integrazione") {
 			steps {
 				sh 'mvn clean install -DskipTests -P integrationTest'
 			}
 		}
 		
-		stage("unit-test") {
+		stage("test unitari") {
 			steps {
 				sh 'mvn test -f giornale-app/pom.xml'
 			}
 		}
 		
-		stage("integration-test") {
+		stage("esecuzione integration test") {
 			steps {
 				sh 'echo $USER'
 				sh 'newgrp docker'
@@ -26,16 +26,22 @@ pipeline {
 			}
 		}
 		
-		stage("build-prod") {
+		stage("build con profilo produzione") {
 			steps {
 				sh 'mvn clean install -DskipTests -P prod'
 			}
 		}
 		
-		stage("push-to-repo") {
+		stage("Push immagine docker su repository") {
 			steps {
-				sh "echo 'dockerize application'"
-				sh "echo 'push docker application to repo'" 
+				sh "echo 'docker build ...'"
+				sh "echo 'docker push ...'" 
+			}
+		}
+		
+		stage("Aggiornamento pacchetto") {
+			steps {
+				sh "echo 'kubectlf apply -f ...'"
 			}
 		} 
 	}
