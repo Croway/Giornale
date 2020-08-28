@@ -32,6 +32,12 @@ pipeline {
 			}
 		}
 		
+		stage("push-to-repo") {
+			steps {
+				sh "echo 'dockerize application'"
+				sh "echo 'push docker application to repo'" 
+			}
+		} 
 	}
 	
 	post {
