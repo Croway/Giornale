@@ -18,7 +18,7 @@ pipeline {
 		stage("build") {
 		
 			steps {
-				step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StartService', scale: 1, service: 'giornale'], useCustomDockerComposeFile: true])
+				step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'ExecuteCommandInsideContainer', command: '--build up', index: 1, privilegedMode: false, service: 'giornale', workDir: 'giornale-app'], useCustomDockerComposeFile: true])
 			}
 			
 		}
