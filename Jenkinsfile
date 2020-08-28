@@ -19,7 +19,7 @@ pipeline {
 			steps {
 				sh 'echo $USER'
 				sh 'newgrp docker'
-				sh 'docker ps'
+				sh 'docker-compose -f giornale-app/docker-compose.yml up --build'
 			}
 		}
 	}
