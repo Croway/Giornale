@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+info: 
+  app:
+    name: '@project.artifactId@'
+    version: '@project.version@'

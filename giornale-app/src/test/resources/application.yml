@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: '@activatedProperties@'
+  jpa:
+    hibernate:
+      ddl-auto: update
+info: 
+  app:
+    name: '@project.artifactId@'
+    version: '@project.version@'
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
