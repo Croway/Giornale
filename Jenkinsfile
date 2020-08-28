@@ -18,7 +18,7 @@ pipeline {
 		stage("build") {
 		
 			steps {
-				sh 'echo OK'
+				step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StartService', scale: 1, service: 'giornale'], useCustomDockerComposeFile: true])
 			}
 			
 		}
