@@ -18,6 +18,7 @@ pipeline {
 		stage("integration-test") {
 			steps {
 				sh 'echo $USER'
+				sh 'newgrp docker'
 				sh 'docker ps'
 			}
 		}
