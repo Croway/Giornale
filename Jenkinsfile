@@ -2,23 +2,20 @@ pipeline {
 
 	agent any
 	
-	tools {
-    		maven 'mvn'
-  	}
-	
 	stages {
 	
 		stage("unit-test") {
 			steps {
 				sh 'echo ok'
-				// sh 'mvn test -f giornale-app/pom.xml'
+				sh 'mvn test -f giornale-app/pom.xml'
 			}
 		}
 	
 		stage("build") {
 		
 			steps {
-				step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
+				sh 'build'
+				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
 				
 				// step([$class: 'DockerComposeBuilder', dockerComposeFile: 'giornale-app/docker-compose.yml', option: [$class: 'StopAllServices'], useCustomDockerComposeFile: true])
 				
